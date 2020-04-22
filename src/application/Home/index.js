@@ -8,7 +8,10 @@ import {
 } from './style'
 // 利用 NavLink 组件进行路由跳转
 import { NavLink } from 'react-router-dom';
+
+
 function Home (props) {
+  // 对props进行一个解构赋值的操作
   const { route } = props;
 
   return (
@@ -28,4 +31,7 @@ function Home (props) {
   );
 }
 
+// 在index.js中导出Home组件，可以在Home文件下直接import出来
+// 用 exprot default 暴露出来的组件，在其他地方引用时，不需要加大括号
+// 直接 import Home form Home
 export default React.memo (Home);

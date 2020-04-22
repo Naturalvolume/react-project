@@ -1,5 +1,5 @@
-// 在这里定义全局样式，用js函数写，后来在syled-components文件中用import引入
-
+// 在这里定义全局样式，用js函数写，后来在以syled-components定义的css文件中用import引入
+// 这里主要规定全局颜色等信息，比如美团饿了么的底色等等
 // 扩大可点击区域
 const extendClick = () => {
     return `
@@ -19,7 +19,7 @@ const extendClick = () => {
       white-space: nowrap;
     `
   }
-  
+  // 相当于把一些固定样式以自定义值描写
   export default {
     'theme-color': '#d44439',
     'theme-color-shadow': 'rgba (212, 68, 57, .5)',
