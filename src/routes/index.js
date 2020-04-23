@@ -4,8 +4,8 @@ import { Redirect } from "react-router-dom";
 // 引入各个页面
 import Home from '../application/Home';
 import Recommend from '../application/Recommend';
-import Singers from '../application/Home/Singers';
-import Rank from '../application/Home/Rank';
+import Singers from '../application/Singers';
+import Rank from '../application/Rank';
 // 写路由跳转
 export default [
     {

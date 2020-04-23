@@ -1,6 +1,7 @@
 import React from 'react';
 // 用这个渲染recommend页面，不加的话，就没办法渲染出来了
 import { renderRoutes } from "react-router-config";
+// 导入顶部栏、切换栏
 import { 
   Top,
   Tab, 
@@ -22,6 +23,7 @@ function Home (props) {
         <span className="iconfont search">&#xe62b;</span>
       </Top>
       <Tab>
+        {/* 路由跳转 */}
         <NavLink to="/recommend" activeClassName="selected"><TabItem><span > 推荐 </span></TabItem></NavLink>
         <NavLink to="/singers" activeClassName="selected"><TabItem><span > 歌手 </span></TabItem></NavLink>
         <NavLink to="/rank" activeClassName="selected"><TabItem><span > 排行榜 </span></TabItem></NavLink>
