@@ -2,6 +2,9 @@ import React from 'react';
 // 从自己的组件库中引入slider组件
 import Slider from '../../components/slider';
 import RecommendList from '../../components/list';
+// 连接recux
+import { connect } from "react-redux";
+import * as actionTypes from './store/actionCreators';
 
 function Recommend () {
   //mock 数据，创建一组四个一摸一样的图片地址
