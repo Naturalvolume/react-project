@@ -60,8 +60,8 @@ export const ListItem = styled.div`
       padding: 0 2px;
       height: 50px;
       text-align: left;
-      font-size: ${style ["font-size-s"]};
+      font-size: ${style["font-size-s"]};
       line-height: 1.4;
-      color: ${style ["font-color-desc"]};
+      color: ${style["font-color-desc"]};
     }
 `;

@@ -13,13 +13,13 @@ import { HashRouter } from 'react-router-dom';
 // 包裹需要状态管理元素的元素
 import { Provider } from 'react-redux'
 // 引入store，公共元素
-// import store from './store/index'
+import store from './store/index'
 
 
 // 这是根组件
 function App() {
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <HashRouter>
         <GlobalStyle></GlobalStyle>
         <IconStyle></IconStyle>
@@ -27,7 +27,7 @@ function App() {
         <i className="iconfont">&#xe62b;</i>
         <div>success</div>
       </HashRouter>
-    // </Provider>
+    </Provider>
   );
 }
 
