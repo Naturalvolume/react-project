@@ -1,8 +1,8 @@
 import React from 'react';
 // 图片懒加载
-import LazyLoad from 'react-lazy-load';
-// 保证当滑动的时候让下面的图片依次显示
-import { forceCheck } from 'react-lazyload';
+// import LazyLoad from 'react-lazyload';
+// // 保证当滑动的时候让下面的图片依次显示
+// import { forceCheck } from 'react-lazyload';
 import { 
   ListWrapper,
   ListItem,
@@ -22,10 +22,10 @@ function RecommendList (props) {
               <ListItem key={item.id + index}>
                 <div className="img_wrapper">
                   <div className="decorate"></div>
-                    <Lazyload placeholder={<img width="100%" height="100%" src={require ('./music.png')} alt="music"/>}>
+                    
                     {/* 加param参数可以减小请求的图片资源大小 */}
                       <img src={item.picUrl + "?param=300x300"} width="100%" height="100%" alt="music"/>
-                    </Lazyload>
+          
                   <div className="play_count">
                     <i className="iconfont play">&#xe885;</i>
                     <span className="count">{getCount (item.playCount)}</span>

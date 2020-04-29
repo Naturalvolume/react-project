@@ -39,13 +39,13 @@ export const getRecommendList = () => {
   }
 };
 // 另外在获取推荐歌单后，应把 loading 状态改为 false
-export const getRecommendList = () => {
-  return (dispatch) => {
-    getRecommendListRequest ().then (data => {
-      dispatch (changeRecommendList (data.result));
-      dispatch (changeEnterLoading (false));// 改变 loading
-    }).catch (() => {
-      console.log ("推荐歌单数据传输错误");
-    });
-  }
-};
+// export const getRecommendList = () => {
+//   return (dispatch) => {
+//     getRecommendListRequest ().then (data => {
+//       dispatch (changeRecommendList (data.result));
+//       dispatch (changeEnterLoading (false));// 改变 loading
+//     }).catch (() => {
+//       console.log ("推荐歌单数据传输错误");
+//     });
+//   }
+// };

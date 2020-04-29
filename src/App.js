@@ -24,8 +24,6 @@ function App() {
         <GlobalStyle></GlobalStyle>
         <IconStyle></IconStyle>
         {renderRoutes (routes)}
-        <i className="iconfont">&#xe62b;</i>
-        <div>success</div>
       </HashRouter>
     </Provider>
   );
