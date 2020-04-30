@@ -3,9 +3,10 @@ import * as actionTypes from './constants';
 // 将 JS 对象转换成 immutable 对象
 import { fromJS } from 'immutable';
 import { getBannerRequest, getRecommendListRequest } from '../../../api/request';
-
+// 定义生成action
 export const changeBannerList = (data) => ({
   type: actionTypes.CHANGE_BANNER,
+  // 将传入的数据转换成immutable
   data: fromJS (data)
 });
 
@@ -22,6 +23,7 @@ export const changeEnterLoading = (data) => ({
 export const getBannerList = () => {
   return (dispatch) => {
     getBannerRequest ().then (data => {
+      // view发出action
       dispatch (changeBannerList (data.banners));
     }).catch (() => {
       console.log ("轮播图数据传输错误");

@@ -10,6 +10,7 @@ const defaultState = fromJS ({
   enterLoading: true,
 });
 // 加入处理逻辑，immutable数据结构必须用set方法设置新状态，用get方法取状态
+// 这是直接暴露函数，可以不需要函数名，因为在import它的文件中有变量接收
 export default (state = defaultState, action) => {
     switch (action.type) {
       case actionTypes.CHANGE_BANNER:
