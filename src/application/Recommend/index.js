@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// 从自己的组件库中引入slider组件
+// 从自己的组件库中引入组件
 import Slider from '../../components/slider';
 import RecommendList from '../../components/list';
 import Scroll from '../../baseUI/scroll/index';
@@ -7,13 +7,13 @@ import Loading from '../../baseUI/loading/index';
 // 连接redux
 import { connect } from "react-redux";
 import * as actionTypes from './store/actionCreators';
+
 import { Content } from './style';
 
 function Recommend (props){
   const { bannerList, recommendList } = props;
-
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props;
-  // 告诉 React 组件需要在渲染后执行某些操作
+  // 告诉 React 组件在渲染后发送dispatch给store
   useEffect (() => {
     getBannerDataDispatch ();
     getRecommendListDataDispatch ();
