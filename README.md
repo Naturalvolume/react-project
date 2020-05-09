@@ -42,6 +42,7 @@ constructor(props) {
 #### 3.props传值、父子组件传值
 #### 4.es6、es5 和 commonjs 模块化的区别
 #### 5.生命周期
+#### 6.虚拟dom
 ## 二、react路由
 [react router中文文档](http://react-guide.github.io/react-router-cn/index.html)
 [router的基本使用](https://segmentfault.com/a/1190000019790930)
