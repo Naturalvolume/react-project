@@ -105,4 +105,5 @@ import { NavLink } from 'react-router-dom'
 # 五、immutable数据
 # 六、style-components
 # 七、axios
+axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react可以在`componentDidMount`生命周期函数里请求ajax，因为在`render`里执行，会出现很多问题，比如一直循环渲染；在`componentWillMount`里执行，在使用RN时，又会有冲突。所以强烈建议在`componentDidMount`函数里作ajax请求。
 # 八、性能优化
