@@ -100,6 +100,7 @@ import { NavLink } from 'react-router-dom'
 （3）[router的原理](https://www.jianshu.com/p/d991a4a55ae1)
 # 三、react hook
 # 四、redux
+redux是一个轻量级的状态管理框架，是一种思想，可以在很多个框架中使用，不只适用于react。它将状态存放在一起，状态根据视图层的动作改变，进而又改变视图。
 [2019 React Redux 完全指南](https://github.com/xitu/gold-miner/blob/master/TODO1/redux-tutorial.md)
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
 # 五、immutable数据
