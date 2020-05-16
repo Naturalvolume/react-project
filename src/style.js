@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-
+// 全局样式设置，消去浏览器默认样式的影响
+// 相当于把全局样式当成一个组件导出
 export const GlobalStyle = createGlobalStyle`
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -30,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 	}
 	html, body {
-		background: #f2f3f4;;
+		background: #4DB3B3;;
 	}
 	ol, ul {
 		list-style: none;

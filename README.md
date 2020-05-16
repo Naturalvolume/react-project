@@ -7,6 +7,7 @@
 ### 2.JSX
 组件名称的首字母必须大写，因为JSX语法，最后需要通过babel转义成ES5语法，而babel在进行转义JSX语法时，是调用了 React.createElement() 这个方法，这个方法需要接收三个参数：type, config, children。第一个参数声明了这个元素的类型，当创建自定义组件时如果首字母小写， babel会在转义时按照一个字符串进行传递；当首字母大写时，babel在转义时按照一个变量进行传递。问题就在这里，如果传递的是一个字符串，那么在创建虚拟DOM对象时，React会认为这是一个原生的HTML标签，但是这显然不是一个原生的HTML标签，因此去创建一个不存在的标签肯定是会报错的。如果首字母大写，那么就会当成一个变量传递进去，这个时候React会知道这是一个自定义组件，因此他就不会报错了。
 ### 3.定义组件
+[关于函数组件和类组件的对比](https://www.jianshu.com/p/028b0edfa082)
 - 无状态函数组件 ``function`
 不会被实例化，整体渲染性能高，但组件不能访问this对象，无生命周期方法，只能访问输入的props，无法管理状态
 - class组件 
@@ -105,6 +106,10 @@ redux是一个轻量级的状态管理框架，是一种思想，可以在很多
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
 # 五、immutable数据
 # 六、style-components
+style-components就是以组件的形式书写样式
+- 对设置全局样式提供了`createGlobalStyle`全局样式组件，在react组件的最外层引入即可。
+- 引入图片要用import导入，再以变量`${image}`的方式引入
+关于现在用js写css的流行框架分析：[CSS-in-JS，向Web组件化再迈一大步](https://www.jianshu.com/p/cefd3ae73255)
 # 七、axios
 axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react可以在`componentDidMount`生命周期函数里请求ajax，因为在`render`里执行，会出现很多问题，比如一直循环渲染；在`componentWillMount`里执行，在使用RN时，又会有冲突。所以强烈建议在`componentDidMount`函数里作ajax请求。
 # 八、性能优化
