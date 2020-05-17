@@ -1,4 +1,4 @@
-// 配置全局样式
+// 在这里配置整个app的不变样式
 // 扩大可点击区域
 const extendClick = () => {
   return `

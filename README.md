@@ -97,7 +97,7 @@ import { NavLink } from 'react-router-dom'
 ```
 **参考**
 （1）[react router中文文档](http://react-guide.github.io/react-router-cn/index.html)
-（2）[outer的基本使用](https://segmentfault.com/a/1190000019790930)
+（2）[router的基本使用](https://segmentfault.com/a/1190000019790930)
 （3）[router的原理](https://www.jianshu.com/p/d991a4a55ae1)
 # 三、react hook
 # 四、redux
