@@ -15,6 +15,7 @@ export default [
       {
         path: "/",
         exact: true,
+        // 这里直接渲染搜索组件
         render: () => (
           <Redirect to={"/search"}/>
         )

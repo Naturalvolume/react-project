@@ -1,5 +1,5 @@
 import React from 'react'
-import {Top, Tab, Btn} from './style'
+import {Top, Tab } from './style'
 import { renderRoutes } from "react-router-config";
 import { NavLink } from 'react-router-dom';// 利用 NavLink 组件进行路由跳转
 // 在这里写顶部栏公共组件
@@ -24,7 +24,7 @@ function Home(props) {
         <NavLink to='/Rank' activeClassName="selected"><span>排行榜</span></NavLink>
         
       </Tab>
-      
+      {/* 这里要显示出来下一级路由，必须再调用一次路由渲染函数 */}
       { renderRoutes (route.routes) }
     </div>
   ) 

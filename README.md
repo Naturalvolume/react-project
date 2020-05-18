@@ -112,4 +112,7 @@ style-components就是以组件的形式书写样式
 关于现在用js写css的流行框架分析：[CSS-in-JS，向Web组件化再迈一大步](https://www.jianshu.com/p/cefd3ae73255)
 # 七、axios
 axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react可以在`componentDidMount`生命周期函数里请求ajax，因为在`render`里执行，会出现很多问题，比如一直循环渲染；在`componentWillMount`里执行，在使用RN时，又会有冲突。所以强烈建议在`componentDidMount`函数里作ajax请求。
+#### 关于的博客
+- [axios全攻略](https://ykloveyxk.github.io/2017/02/25/axios%E5%85%A8%E6%94%BB%E7%95%A5/#more)
+- 
 # 八、性能优化

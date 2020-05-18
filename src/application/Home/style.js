@@ -6,7 +6,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 padding: 5px 10px;
-background: ${style["theme-color"]};
+background: ${style["background-color"]};
 // 设置子元素span的格式，所以在Top中写span元素就直接是这个格式
 &>span {
   line-height: 40px;
@@ -25,7 +25,7 @@ export const Tab = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: ${style["theme-color"]};
+  background: ${style["background-color"]};
   padding: 5px 40px;
   // 路由跳转元素包裹后就变成了a标签
   a {
