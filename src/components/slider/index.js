@@ -27,6 +27,7 @@ function Slider(props) {
     <SliderContainer>
       {/*<div className='mask'></div>*/}
       <div className='slider-container'>
+        {/* swiper 样式都是引自插件的css文件中 */}
         <div className="swiper-wrapper">
           {/* 渲染轮播图 */}
           {

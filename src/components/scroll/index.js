@@ -2,7 +2,7 @@ import React, { forwardRef, useState,useEffect, useRef, useImperativeHandle } fr
 import PropTypes from "prop-types"
 // 封装好的scroll插件
 import BScroll from "better-scroll"
-import {ScrollContainer} from './style'
+import { ScrollContainer } from './style'
 
 // 用 forwardRef 包裹改变函数式组件不能被上层组件调用ref的情况
 const Scroll = forwardRef ((props, ref) => {
