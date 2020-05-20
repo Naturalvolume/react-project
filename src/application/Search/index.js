@@ -18,9 +18,11 @@ function Search(props) {
     // 优化性能二：页面切换时不发送网络请求，根据immutable数据的长度属性
     if(!bannerList.size) {
       getBannerDataDispatch()
+      console.log(bannerList)
     }
     if(!recommendList.size) {
       getRecommendListDataDispatch()
+      console.log(recommendList)
     }
     //eslint-disable-next-line
   }, []);

@@ -14,12 +14,14 @@ import {
   refreshMoreHotSingerList 
 } from './store/actionCreator'
 import {connect} from 'react-redux'
-import { getSingerListRequest } from '../../api/request'
+// 性能优化
+// import Loading from '../../baseUI/loading';
+import  LazyLoad, {forceCheck} from 'react-lazyload';
 
 function Singers(props) {
   // 对象的解构是用大括号！！！
   const {singerList, enterLoading, pullUpLoading, pullDownLoading,pageCount} = props
-  const {getHotSingerDispatch, updateDispatch} = props
+  const {getHotSingerDispatch, updateDispatch, pullDownRefreshDispatch, pullUpRefreshDispatch} = props
 
   // 要实现点击更改元素的样式，要获得元素的key值
   let [category, setCategory] = useState ('');
@@ -29,32 +31,41 @@ function Singers(props) {
     setAlpha (val);
     // 在这里dispatch，传入改变的状态
     updateDispatch(category, val);
+    console.log(singerList)
   }
 
   let handleUpdateCategory = (val) => {
     setCategory (val);
     updateDispatch(val, alpha);
+    console.log(singerList)
   }
 
   // 歌手列表
   
   // useEffect传入的第一个参数是函数，通常都使用箭头函数（匿名函数）
   // 一开始先加载出热门歌手列表
-  useEffect(()=>{
-    // if(!singerList) {
-      getHotSingerDispatch()
-    // }
-  }, []) 
+  // 
   useEffect(() => {
-    updateDispatch(category, alpha)
-  }, [category, alpha])
+    getHotSingerDispatch();
+    // eslint-disable-next-line
+  }, []);
+
+  const handlePullUp = () => {
+    pullUpRefreshDispatch(category, alpha, category === '', pageCount);
+  };
+
+  const handlePullDown = () => {
+    pullDownRefreshDispatch(category, alpha);
+  };
 
   // 这是组件化的另一种形式，通过定义渲染函数，返回对应的组件结构，同时在style中定义样式
   const renderSingerList = () => {
+    // 注意啦！！！！！！一定要将数据从 immutable 转换回来！！！！不然加载不出来数据的！！
+    const list = singerList ? singerList.toJS(): [];
     return (
       <List>
         {
-          singerList.map ((item, index) => {
+          list.map ((item, index) => {
             return (
               <ListItem key={item.accountId+""+index}>
                 <div className="img_wrapper">
@@ -80,7 +91,13 @@ function Singers(props) {
       <Horizon list={alphaTypes} title={"首字母:"} handleClick={handleUpdateAlpha} curVal={alpha}></Horizon>
     </Content>
     <ListContainer>
-      <Scroll>
+      <Scroll
+        pullUp={ handlePullUp }
+        pullDown = { handlePullDown }
+        pullUpLoading = { pullUpLoading }
+        pullDownLoading = { pullDownLoading }
+        onScroll={forceCheck}
+      >
        { renderSingerList () }
       </Scroll>
     </ListContainer>
