@@ -10,7 +10,7 @@ const defaultState = fromJS ({
   recommendList: [],
 });
 
-// 使用箭头函数直接把reducer函数暴露出去
+// 使用箭头函数(匿名函数)直接把reducer函数暴露出去
 export default (state=defaultState, action) => {
   // 这里是返回的 action对象
   // action {

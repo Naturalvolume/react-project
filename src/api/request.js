@@ -9,3 +9,12 @@ export const getBannerRequest = () => {
 export const getRecommendListRequest = () => {
   return axiosInstance.get ('/personalized');
 }
+
+// 注意啦！！！！发送带有参数的网络请求，应该用代码符号而不是引号！！！
+export const getHotSingerListRequest = (count) => {
+  return axiosInstance.get(`/top/artists?offset=${count}`);
+}
+
+export const getSingerListRequest= (category, alpha, count) => {
+  return axiosInstance.get(`/artist/list?cat=${category}&initial=${alpha.toLowerCase()}&offset=${count}`);
+}
