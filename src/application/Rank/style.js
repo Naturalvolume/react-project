@@ -5,11 +5,13 @@ export const Content = styled.div`
   // 注意啦！！在这里设置宽高是非常重要的！！不知道理解的对不对
   // 个人认为是固定定位元素可以直接占满剩下的位置
   width: 100%;
-  height: 100%;
+  // 注意啦！！！不能定义高度！！！已经定义过上下距离了，让它自适应就是
+  // height: 100%;
   position: fixed;
   top: 85px;
   bottom: 0;
-  overflow: hidden;
+  overflow: visible;
+  z-index: -1;
 `
 
 export const GovernmentContainer = styled.div`

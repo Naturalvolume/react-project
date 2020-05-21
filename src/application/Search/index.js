@@ -8,6 +8,8 @@ import { connect } from "react-redux"
 import * as actionTypes from './store/actionCreators'
 // 引入滑动加载图片的方法
 import { forceCheck } from 'react-lazyload'
+// 一定要引入这个路由渲染组件，把下一页组件渲染出来
+import { renderRoutes } from 'react-router-config';
 
 function Search(props) {
   const { bannerList, recommendList } = props
@@ -18,11 +20,9 @@ function Search(props) {
     // 优化性能二：页面切换时不发送网络请求，根据immutable数据的长度属性
     if(!bannerList.size) {
       getBannerDataDispatch()
-      console.log(bannerList)
     }
     if(!recommendList.size) {
       getRecommendListDataDispatch()
-      console.log(recommendList)
     }
     //eslint-disable-next-line
   }, []);
@@ -43,6 +43,10 @@ function Search(props) {
             <RecommendList recommendList={recommendListJS}></RecommendList>
           </div>
         </Scroll>
+        {/* // 注意啦！！！一定要用这个 将目前所在路由的下一层子路由加以渲染 */}
+         
+       { console.log(props.route.routes)}
+        {renderRoutes (props.route.routes) }
       </Content> 
     </div>
   ) 

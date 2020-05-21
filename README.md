@@ -119,3 +119,5 @@ axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react
 - redux数据缓存，页面切换的时候没有必要多次发送ajax请求，所以可以通过判断redux数据是否存在来决定是否要发送请求。
 # 九、遇到的问题
 1. 跨域资源共享：用两个react项目访问网易云音乐接口，后一个打开的react项目将不能获取数据，出现CORS问题。关于CORS：[HTTP访问控制（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+2. 堆叠上下文
+3. flex布局
