@@ -19,3 +19,14 @@ export const filterIndex = rankList => {
     }
   }
 };
+
+// 处理歌手列表拼接歌手名字
+export const getName = list => {
+  let str = "";
+  list.map ((item, index) => {
+    // 很巧妙的名字拼接方法
+    str += index === 0 ? item.name : "/" + item.name;
+    return item;
+  });
+  return str;
+};

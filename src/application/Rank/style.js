@@ -30,23 +30,32 @@ export const ItemList = styled.div`
   width: 100%;
   border-bottom: 1px solid ${style['border-color']};
   .imgContainer {
+    width: 100px;
+    height: 100px;
     margin-right: 20px;
     // 小tips:给图像上文字一个遮罩，防止在图像和文字都是白色的时候看不清文字
     .mask {
+      // 笨蛋！！这是绝对布局呀！！！它已经脱离文档流了呀！！！！
       position: absolute;
-      bottom: 0;
+      bottom: 5px;
       // 这里！！绝对定位元素已经脱离文档流了，所以宽度就占了全部，要考虑如何让它正好占到图片上
       // bfc 的神奇之处，脱离了imgContainer的文档流，没有脱离上一层 itemlist 的文档流
       // left:10px;
       // right: 300px;
-      width: 100%;
+      width: 100px;
       height: 35px;
       border-radius: 3px;
-      background: linear-gradient(hsla(0,0%,43%,.4),hsla(0,0%,100%,0));
+      background: linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,43%,.4));
     }
     img {
-      width:100px;
-      height: 100px;
+      // 让图片自适应父元素大小的方法：设置宽高比例百分比
+      width: 100%;
+      height: 100%;
+      // 设置图片适应父元素大小且保持图片原有比例的方法：设置宽高自适应，且最大宽度和高度
+      // width: auto;  
+      // height: auto;  
+      // max-width: 100%;  
+      // max-height: 100%; 
       border-radius: 3px;
     }
     span {
