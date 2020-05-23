@@ -46,8 +46,8 @@ function Search(props) {
         {/* // 注意啦！！！一定要用这个 将目前所在路由的下一层子路由加以渲染 */}
          
        { console.log(props.route.routes)}
-        {renderRoutes (props.route.routes) }
       </Content> 
+      {renderRoutes (props.route.routes) }
     </div>
   ) 
 }

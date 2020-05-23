@@ -13,5 +13,5 @@ export const Content = styled.div`
   // 一个纠结的事情，要让导航栏固定到搜索页面上面，就得设置z-index小于0
   // 但是后面的歌单列表，是搜索页面的子页面，设置z-index是一个大的数不管用。。。。。。
   // 只能在这里设置z-index，不能满足这两个组件的要求
-  z-index: 50;
+  z-index: -1;
 `

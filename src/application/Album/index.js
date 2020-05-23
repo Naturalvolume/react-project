@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container} from './style';
 // 引入动画插件
 import { CSSTransition } from 'react-transition-group';
@@ -7,96 +7,43 @@ import Header from '../../baseUI/header'
 import Scroll from '../../components/scroll'
 import { TopDesc, Menu, SongList, SongItem} from './style'
 
-import {getCount, getName} from '../../api/utils'
+import {getCount, getName, isEmptyObject} from '../../api/utils'
+import {connect} from 'react-redux'
+import {actionCreators} from './store'
+
 
 function Album (props) {
+  // 这里用到了不同变量的解构
+  const {currentAlbum:currentAlbumImmutable, enterLoading} = props
+  // 注意！！在组件中使用数据时，要更改immutable为js类型
+  // 要判断数据是否为空
+  const currentAlbum = currentAlbumImmutable ? currentAlbumImmutable.toJS() : []
+  const {getAlbumDataDispatch} = props
+
   const [showStatus, setShowStatus] = useState (true);
+
+  // 从路由中拿到歌单的 id，这里太巧妙了！！
+  // 在id值改变时重新渲染
+  // but 这个getAlbumDataDispatch是什么意思
+  const id = props.match.params.id;
+  // 错误的代码！！！在这里不用传入id!!!
+  // useEffect ((id) => {
+  //   console.log(id)
+  //   getAlbumDataDispatch(id)
+  // }, [getAlbumDataDispatch, id])
+  // 讲道理，加不加这个参数应该影响不大吧
+  // 猜测这里应该还是跟箭头函数的使用有关
+  useEffect (() => {
+    console.log(id)
+    getAlbumDataDispatch(id)
+  }, [getAlbumDataDispatch, id])
+
   // 点击返回动画
   const handleBack = () => {
     setShowStatus (false);
   };
-  //mock 数据
-  const currentAlbum = {
-    creator: {
-      avatarUrl: "http://p1.music.126.net/O9zV6jeawR43pfiK2JaVSw==/109951164232128905.jpg",
-      nickname: "浪里推舟"
-    },
-    coverImgUrl: "http://p2.music.126.net/ecpXnH13-0QWpWQmqlR0gw==/109951164354856816.jpg",
-    subscribedCount: 2010711,
-    name: "听完就睡，耳机是天黑以后柔软的梦境",
-    tracks:[
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-      {
-        name: "我真的受伤了",
-        ar: [{name: "张学友"}, {name: "周华健"}],
-        al: {
-          name: "学友 热"
-        }
-      },
-    ]
-  }
+  
+
   
   const renderTopDesc = () => {
     return (
@@ -124,6 +71,7 @@ function Album (props) {
       </TopDesc>
     )
   }
+
   return (
     // 让进场动画包裹在外层
     <CSSTransition
@@ -138,6 +86,9 @@ function Album (props) {
     <Container>
       {/* 传入点击返回函数 */}
       <Header title='返回' handleClick={handleBack}></Header>
+      {
+        // 注意啦！！！这个组件中一定要先判断数据是否收到，这是一个三元表达式
+        !isEmptyObject (currentAlbum) ? (   
       <Scroll bounceTop={false}>
   <div>
     {renderTopDesc()}
@@ -190,10 +141,35 @@ function Album (props) {
 </SongList>
   </div>  
 </Scroll>
-    
+   ) : null
+  } 
     </Container>
     </CSSTransition>
   )
 }
 
-export default Album;
+const mapStateToProps = (state) => ({
+    // immutable数据必须使用 getIn 方法获得状态
+    currentAlbum: state.getIn(['album', 'currentAlbum']),
+    enterLoading: state.getIn(['album', 'enterLoading'])
+})
+// 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAlbumDataDispatch(id) {
+      dispatch(actionCreators.getAlbumDetailList(id))
+      // 注意啦！！这里每次发送请求数据动作都会同时触发动画动作
+      // 然后在进行数据请求动作之后，在更改数据类型时同时dispatch数据和等待动画状态
+      dispatch(actionCreators.changeEnterLoading(true))
+
+    }
+  }
+}
+// React.memo是react16.6的新特性，它是控制仅在它的 props 发生改变的时候进行重新渲染，提升性能
+// 使用了React.memo和函数式组件就可以替代类组件的一些功能
+// 两种使用方式：
+// 1.引入 import { memo } from 'react'; 引出  export default memo(Album);
+// 2.直接引出 export default React.memo(Album);
+
+// connect()()连接redux到组件
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Album));

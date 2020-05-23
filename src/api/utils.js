@@ -30,3 +30,7 @@ export const getName = list => {
   });
   return str;
 };
+
+// 判断一个对象是否为空
+// 防止在ajax数据收到前渲染页面，导致报错
+export const isEmptyObject = obj => !obj || Object.keys (obj).length === 0;
