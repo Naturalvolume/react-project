@@ -17,6 +17,8 @@ import {connect} from 'react-redux'
 // 性能优化
 // import Loading from '../../baseUI/loading';
 import  LazyLoad, {forceCheck} from 'react-lazyload';
+import { renderRoutes } from 'react-router-config'
+import {NavLink} from 'react-router-dom'
 
 function Singers(props) {
   // 对象的解构是用大括号！！！
@@ -67,12 +69,17 @@ function Singers(props) {
         {
           list.map ((item, index) => {
             return (
-              <ListItem key={item.accountId+""+index}>
+              // 使用了两种跳转页面方法，一种是 props.history.push()改变路由地址
+              // 一种是使用router-dom的容器 <NavLink>跳转
+              // 注意啦！！要给循环生成的元素在最外层元素中添加一个特殊的键值key
+              <NavLink  key={item.id} to={`/singers/${item.id}`}>
+              <ListItem>
                 <div className="img_wrapper">
                   <img src={`${item.picUrl}?param=300x300`} width="100%" height="100%" alt="music"/>
                 </div>
                 <span className="name">{item.name}</span>
               </ListItem>
+              </NavLink>
             )
           })
         }
@@ -101,7 +108,9 @@ function Singers(props) {
        { renderSingerList () }
       </Scroll>
     </ListContainer>
+    {renderRoutes(props.route.routes)}
     </div>
+    
   ) 
 }
 

@@ -8,6 +8,7 @@ import Singers from '../application/Singers';
 import Rank from '../application/Rank';
 import Search from '../application/Search';
 import Album from '../application/Album'
+import Singer from '../application/Singer'
 
 // 路由step3:配置路由映射表
 export default [
@@ -38,7 +39,13 @@ export default [
       },
       {
         path: "/singers",
-        component: Singers
+        component: Singers,
+        routes: [
+          {
+            path:"/singers/:id",
+            component: Singer
+          }
+        ]
       },
       {
         path: "/rank",
