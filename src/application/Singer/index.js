@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {Content} from './style'
+import React, {useState, useEffect} from 'react'
+import {Content,CollectButton,BgLayer,ImgWrapper} from './style'
 import Scroll from '../../components/scroll'
 import SongList from '../../baseUI/songList'
 import Header from '../../baseUI/header'
@@ -8,8 +8,11 @@ import { CSSTransition } from "react-transition-group";
 import {actionCreators} from './store'
 import {connect} from 'react-redux'
 
+
 function Singer(props) {
-  const {artist} = props
+  const {artist, enterLoading} = props
+  // 注意啦！转换前一定要判断immutable数据是否为空啊！
+  const artistJS = artist ? artist.toJS() : []
   const {getSingerDataDispatch} = props
   // 动画初始状态为true，直接跳转进来
   const [showStatus, setShowStatus] = useState(true)
@@ -18,6 +21,10 @@ function Singer(props) {
     setShowStatus(false)
   }
  
+  useEffect (() => {
+    let id = props.match.params.id
+    getSingerDataDispatch(id);
+  }, [])
 
   const renderTop = () => {
     return(
@@ -41,7 +48,14 @@ function Singer(props) {
       <Scroll>
         {/* 把退出函数传给顶部栏，实现返回功能 */}
         <Header title='singer' handleClick={handleBack}></Header>
-        {renderTop()}
+        <ImgWrapper bgUrl={artistJS.picUrl}>
+      <div className="filter"></div>
+    </ImgWrapper>
+    <CollectButton>
+      <i className="iconfont">&#xe62d;</i>
+      <span className="text"> 收藏 </span>
+    </CollectButton>
+    <BgLayer></BgLayer>
         {/* <SongList currentAlbum={artist}></SongList> */}
       </Scroll>
     </Content>
@@ -49,10 +63,16 @@ function Singer(props) {
   )
 }
 // 注意啦！箭头函数返回对象的要用括号
-const mapStateToProps = state => ({
-  artist: state.getIn(['singer', 'artist']),
+const mapStateToProps = state => {
+  console.log(state.getIn(['singer','artist']))
+  return {
+    // 这里！！！为何 artist里存储了artist和enterloading的值
+    // 还不能改成 state.getIn(['singer','artist'])
+    // 疑惑！
+    // ！！！阿拉搜！原来在合并reducer时，已经把这个组件对应的state命名为artist，解惑了！！！
+  artist: state.getIn(['singer','artist']),
   enterLoading: state.getIn(['singer', 'enterLoading'])
-})
+}}
 const mapDispatchToProps = (dispatch) => {
   return {
     // 返回的是一个整体函数

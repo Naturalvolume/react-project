@@ -8,7 +8,7 @@ export const HeaderContainer = styled.div`
   height: 40px;
   width: 100%;
   // 在这里设置了堆，让标题栏显示在最上面
-  z-index: 100;
+  z-index: 2000;
   display: flex;
   line-height: 40px;
   // 这里不设置背景，就可以显示封面的背景

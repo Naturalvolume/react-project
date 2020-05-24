@@ -53,14 +53,17 @@ export const TopDesc = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
+    // filter是css3新增的滤镜效果，blur表示高斯模糊
     filter: blur(20px);
+    // 这里跟上面的filter是不一样的，它的作用是给调节背景图片色调
+    // 疑惑：这里为什么可以重叠两个背景
     .filter {
       position: absolute;
       z-index: 10;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba (7, 17, 27, 0.2);
+      background: rgba(7, 17, 27, 0.2);
     }
   }
   .img_wrapper {
@@ -73,7 +76,7 @@ export const TopDesc = styled.div`
       width: 100%;
       height: 35px;
       border-radius: 3px;
-      background: linear-gradient (hsla (0,0%,43%,.4),hsla (0,0%,100%,0));
+      background: linear-gradient (hsla(0,0%,43%,.4),hsla(0,0%,100%,0));
     }
     .play_count {
       position: absolute;

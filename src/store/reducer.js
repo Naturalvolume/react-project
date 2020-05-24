@@ -12,5 +12,5 @@ export default combineReducers ({
  singers: singersReducer,
  rank: rankReducer,
  album: albumReducer,
- artist: artistReducer,
+ singer: artistReducer,
 });

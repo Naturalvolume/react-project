@@ -17,7 +17,8 @@ const changeSingerInfo = (data) => ({
 export const getSingerInfo = (id) => {
   return (dispatch) => {
     getSingerInfoRequest(id).then(res => {
-      let data = res
+      let data = res.artist
+      console.log(data)
       dispatch(changeSingerInfo(data))
       dispatch(changeEnterLoading(false))
     }).catch(() => {

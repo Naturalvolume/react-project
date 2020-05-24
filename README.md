@@ -105,6 +105,7 @@ redux是一个轻量级的状态管理框架，是一种思想，可以在很多
 [2019 React Redux 完全指南](https://github.com/xitu/gold-miner/blob/master/TODO1/redux-tutorial.md)
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
 # 五、immutable数据
+[immutable官方文档](https://immutable-js.github.io/immutable-js/)
 # 六、style-components
 style-components就是以组件的形式书写样式
 - 对设置全局样式提供了`createGlobalStyle`全局样式组件，在react组件的最外层引入即可。
