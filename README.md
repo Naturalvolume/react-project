@@ -111,6 +111,7 @@ style-components就是以组件的形式书写样式
 - 对设置全局样式提供了`createGlobalStyle`全局样式组件，在react组件的最外层引入即可。
 - 引入图片要用import导入，再以变量`${image}`的方式引入
 关于现在用js写css的流行框架分析：[CSS-in-JS，向Web组件化再迈一大步](https://www.jianshu.com/p/cefd3ae73255)
+- style-components的视频教程：[组件化必杀技](https://www.jianshu.com/p/3825b7822560)
 # 七、axios
 axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react可以在`componentDidMount`生命周期函数里请求ajax，因为在`render`里执行，会出现很多问题，比如一直循环渲染；在`componentWillMount`里执行，在使用RN时，又会有冲突。所以强烈建议在`componentDidMount`函数里作ajax请求。
 #### 关于axios的博客

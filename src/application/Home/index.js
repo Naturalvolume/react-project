@@ -2,7 +2,7 @@ import React from 'react'
 import {Top, Tab } from './style'
 import { renderRoutes } from "react-router-config";
 import { NavLink } from 'react-router-dom';// 利用 NavLink 组件进行路由跳转
-// 在这里写顶部栏公共组件
+import Player from '../Player';// 在这里写顶部栏公共组件
 // 注意了组件都要大写
 // 注意这里要用 props
 // 在routes/index.js 中定义路由的时候
@@ -22,11 +22,11 @@ function Home(props) {
         <NavLink to='/Mine' activeClassName="selected"><span>我的</span></NavLink>
         <NavLink to='/Search' activeClassName="selected"><span>发现</span></NavLink>
         <NavLink to='/Singers' activeClassName="selected"><span>歌手</span></NavLink>
-        <NavLink to='/Rank' activeClassName="selected"><span>排行榜</span></NavLink>
-        
+        <NavLink to='/Rank' activeClassName="selected"><span>排行榜</span></NavLink>      
       </Tab>
       {/* 这里要显示出来下一级路由，必须再调用一次路由渲染函数 */}
       { renderRoutes (route.routes) }
+      <Player></Player>
     </div>
   ) 
 }

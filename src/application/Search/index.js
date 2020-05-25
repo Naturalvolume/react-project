@@ -10,9 +10,10 @@ import * as actionTypes from './store/actionCreators'
 import { forceCheck } from 'react-lazyload'
 // 一定要引入这个路由渲染组件，把下一页组件渲染出来
 import { renderRoutes } from 'react-router-config';
+import Loading from '../../baseUI/loading'
 
 function Search(props) {
-  const { bannerList, recommendList } = props
+  const { bannerList, recommendList,enterLoading } = props
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props
   // 参数为空数组[] 表示每次只在组件首次渲染后发出数据请求，相当于生命周期函数componentDidMount
   useEffect (() => {
@@ -41,12 +42,13 @@ function Search(props) {
           <div>
             <Slider bannerList={bannerListJS}></Slider>
             <RecommendList recommendList={recommendListJS}></RecommendList>
+            
           </div>
         </Scroll>
-        {/* // 注意啦！！！一定要用这个 将目前所在路由的下一层子路由加以渲染 */}
+        { enterLoading ? <Loading></Loading> : null }
          
-       { console.log(props.route.routes)}
       </Content> 
+      {/* // 注意啦！！！一定要用这个 将目前所在路由的下一层子路由加以渲染 */}
       {renderRoutes (props.route.routes) }
     </div>
   ) 
@@ -61,6 +63,7 @@ const mapStateToProps = (state) => ({
   // step6: 根据state的变化更新页面
   bannerList: state.getIn (['search', 'bannerList']),
   recommendList: state.getIn (['search', 'recommendList']),
+  enterLoading: state.getIn(['search', 'enterLoading'])
 });
 // 映射 dispatch 到 props 上
 const mapDispatchToProps = (dispatch) => {
@@ -71,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     getRecommendListDataDispatch () {
       dispatch (actionTypes.getRecommendList ());
+      dispatch (actionTypes.changeEnterLoading(true))
     }
   }
 };

@@ -5,6 +5,7 @@ import { reducer as singersReducer } from '../application/Singers/store';
 import { reducer as rankReducer } from '../application/Rank/store';
 import { reducer as albumReducer } from '../application/Album/store'
 import { reducer as artistReducer} from '../application/Singer/store'
+import { reducer as playerReducer } from "../application/Player/store";
 
 export default combineReducers ({
  // 在这里合并不同组件的 reducer
@@ -13,4 +14,5 @@ export default combineReducers ({
  rank: rankReducer,
  album: albumReducer,
  singer: artistReducer,
+ player: playerReducer
 });

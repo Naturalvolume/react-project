@@ -11,7 +11,8 @@ import { TopDesc, Menu } from './style'
 import {getCount, isEmptyObject} from '../../api/utils'
 import {connect} from 'react-redux'
 import {actionCreators} from './store'
-
+// 这里不需要用图片懒加载
+// import LazyLoad from 'react-lazyload'
 
 function Album (props) {
   // 这里用到了不同变量的解构
@@ -54,7 +55,7 @@ function Album (props) {
         </div>
         <div className="img_wrapper">
           <div className="decorate"></div>
-          <img src={currentAlbum.coverImgUrl} alt="" />
+          <img src={currentAlbum.coverImgUrl} alt=""/>
           <div className="play_count">
             <i className="iconfont play">&#xe885;</i>
             <span className="count">{getCount(currentAlbum.subscribedCount)}</span>
