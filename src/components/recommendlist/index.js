@@ -12,6 +12,7 @@ import { withRouter } from 'react-router-dom';
 
 function RecommendList(props) {
   // 添加跳转函数
+  console.log(props)
   const enterDetail = (id) => {
     // 用的history方法，根据id值跳转到对应的页面
     // history方法很神奇，一push就可以根据哈西值跳转，这一点还要研究

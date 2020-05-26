@@ -15,8 +15,9 @@ export const Container = styled.div`
   bottom: 0;
   z-index: 500;
   background: #fff;
-  
+  // 重设动画的参照点为右下角
   transform-origin: right bottom;
+  // 这里定义动画效果
   &.fly-enter, &.fly-appear {
     transform: translate3d(100%, 0, 0);
   }

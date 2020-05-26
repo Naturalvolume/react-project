@@ -13,6 +13,7 @@ import { renderRoutes } from 'react-router-config';
 import Loading from '../../baseUI/loading'
 
 function Search(props) {
+  console.log(props)
   const { bannerList, recommendList,enterLoading } = props
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props
   // 参数为空数组[] 表示每次只在组件首次渲染后发出数据请求，相当于生命周期函数componentDidMount

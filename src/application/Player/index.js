@@ -12,12 +12,12 @@ import {
 import MiniPlayer from '../../baseUI/miniPlayer'
 
 function Player (props) {
+  console.log(props)
   const currentSong = {
     al: { picUrl: "https://p1.music.126.net/JL_id1CFwNJpzgrXwemh4Q==/109951164172892390.jpg" },
     name: "木偶人",
     ar: [{name: "薛之谦"}]
   }
-  console.log(currentSong)
   return (
     <div>
       <MiniPlayer song={currentSong}></MiniPlayer>

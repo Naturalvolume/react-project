@@ -7,6 +7,7 @@ import Player from '../Player';// 在这里写顶部栏公共组件
 // 注意这里要用 props
 // 在routes/index.js 中定义路由的时候
 function Home(props) {
+  console.log(props)
   // 路由就是props中的一个固定属性
   const { route } = props;
   return (
@@ -25,8 +26,9 @@ function Home(props) {
         <NavLink to='/Rank' activeClassName="selected"><span>排行榜</span></NavLink>      
       </Tab>
       {/* 这里要显示出来下一级路由，必须再调用一次路由渲染函数 */}
-      { renderRoutes (route.routes) }
       <Player></Player>
+      { renderRoutes (route.routes) }
+      
     </div>
   ) 
 }

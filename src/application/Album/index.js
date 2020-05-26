@@ -79,6 +79,7 @@ function Album (props) {
     <CSSTransition
       in={showStatus}  
       timeout={300} 
+      // 这里就是定义好的动画类
       classNames="fly" 
       appear={true} 
       unmountOnExit
