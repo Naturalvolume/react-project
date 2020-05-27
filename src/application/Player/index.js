@@ -10,9 +10,14 @@ import {
   changeFullScreen
 } from "./store/actionCreators";
 import MiniPlayer from '../../baseUI/miniPlayer'
+import NormalPlayer from '../..//baseUI/normalPlayer'
 
+// 播放器采用动画切换，当fullScreen为false时，显示小播放器；为true时，显示全屏播放器
 function Player (props) {
-  console.log(props)
+  // 父元素从redux中拿到状态再传给子元素，相当于状态提升
+  const { fullScreen } = props;
+  const { toggleFullScreenDispatch } = props;
+
   const currentSong = {
     al: { picUrl: "https://p1.music.126.net/JL_id1CFwNJpzgrXwemh4Q==/109951164172892390.jpg" },
     name: "木偶人",
@@ -20,7 +25,14 @@ function Player (props) {
   }
   return (
     <div>
-      <MiniPlayer song={currentSong}></MiniPlayer>
+      {/* 小播放器和全屏播放器都是它的子组件，具体显示哪一个由 props.fullScreen决定 */}
+      <MiniPlayer 
+        song={currentSong}
+        fullScreen={fullScreen}
+        toggleFullScreen={toggleFullScreenDispatch}/>
+      <NormalPlayer song={currentSong}
+        fullScreen={fullScreen}
+        toggleFullScreen={toggleFullScreenDispatch}/>
     </div>
   )
 }

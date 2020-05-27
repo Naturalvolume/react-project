@@ -29,6 +29,19 @@ export const Container = styled.div`
   padding: 5px;
   // 别忘了设置最上层
   z-index: 1000;
+
+  // 这里定义是CSSTransition中的className = 'mini'
+  &.mini-enter {
+    transform: translate3d (0, 100%, 0);
+  }
+  &.mini-enter-active {
+    transform: translate3d (0, 0, 0);
+    transition: all 0.4s;
+  }
+  &.mini-exit-active {
+    transform: translate3d (0, 100%, 0);
+    transition: all .4s
+  }
 `
 export const SingerWrapper = styled.div`
   display: flex;
@@ -77,7 +90,17 @@ export const SingerWrapper = styled.div`
 `
 export const IconsWrapper = styled.div`
   display: flex;
+  align-items: center;
   .iconfont {
-    margin: 0 5px;
+    // width:3px;
+    // height: 35px;
+    font-size: 30px;
+    margin: 0 10px;
+    .btn {
+      font-size:16px;
+      position: absolute;
+      left: 8px;
+      top: 8px;
+    }
   }
 `

@@ -79,7 +79,7 @@ function Album (props) {
     <CSSTransition
       in={showStatus}  
       timeout={300} 
-      // 这里就是定义好的动画类
+      // 这里就是定义好的动画类，类名对应着.style.js文件中的进出场动画
       classNames="fly" 
       appear={true} 
       unmountOnExit
