@@ -9,6 +9,7 @@ import Rank from '../application/Rank';
 import Search from '../application/Search';
 import Album from '../application/Album'
 import Singer from '../application/Singer'
+import Find from '../application/Find'
 
 // 路由step3:配置路由映射表
 export default [
@@ -28,7 +29,7 @@ export default [
         )
       },
       {
-        path: "/search/",
+        path: "/search",
         component: Search,
         routes:[
           {
@@ -60,6 +61,10 @@ export default [
       {
         path: "/mine",
         component: Mine
+      },
+      {
+        path: "/find",
+        component: Find
       }
     ]
   }
