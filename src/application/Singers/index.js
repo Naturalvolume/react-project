@@ -15,7 +15,7 @@ import {
 } from './store/actionCreator'
 import {connect} from 'react-redux'
 // 性能优化
-// import Loading from '../../baseUI/loading';
+import Loading from '../../baseUI/loading';
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import { renderRoutes } from 'react-router-config'
 import {NavLink} from 'react-router-dom'
@@ -51,11 +51,11 @@ function Singers(props) {
     getHotSingerDispatch();
     // eslint-disable-next-line
   }, []);
-
+  // 上拉加载函数
   const handlePullUp = () => {
     pullUpRefreshDispatch(category, alpha, category === '', pageCount);
   };
-
+  // 下拉加载函数
   const handlePullDown = () => {
     pullDownRefreshDispatch(category, alpha);
   };
@@ -72,10 +72,12 @@ function Singers(props) {
               // 使用了两种跳转页面方法，一种是 props.history.push()改变路由地址
               // 一种是使用router-dom的容器 <NavLink>跳转
               // 注意啦！！要给循环生成的元素在最外层元素中添加一个特殊的键值key
-              <NavLink  key={item.id} to={`/singers/${item.id}`}>
+              <NavLink  key={item.id+index} to={`/singers/${item.id}`}>
               <ListItem>
                 <div className="img_wrapper">
+                <LazyLoad placeholder={<img width="100%" height="100%" src={require ('../../assets/image/music.png')} alt="music"/>}>
                   <img src={`${item.picUrl}?param=300x300`} width="100%" height="100%" alt="music"/>
+                </LazyLoad>
                 </div>
                 <span className="name">{item.name}</span>
               </ListItem>
@@ -109,6 +111,8 @@ function Singers(props) {
       </Scroll>
     </ListContainer>
     {renderRoutes(props.route.routes)}
+    {/* ???? 为啥关不了动画了<Loading show={enterLoading}></Loading> */}
+    { enterLoading ? <Loading></Loading> : null }
     </div>
     
   ) 
@@ -125,6 +129,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getHotSingerDispatch() {
       dispatch(getHotSingerList());
+      dispatch(changeEnterLoading(true));
     },
     updateDispatch(category, alpha) {
       dispatch(changePageCount(0));//由于改变了分类，所以pageCount清零

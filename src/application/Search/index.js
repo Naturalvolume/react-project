@@ -36,7 +36,7 @@ function Search(props) {
           所以它的外部容器一定是固定高度，不然没法滚动
       */}
       <Content>
-        {/* 给滑动框加上滑动加载图片的方法 */}
+        {/* 给滑动框加上滑动加载图片的方法forceCheck，onScroll是scroll滑动的回调函数 */}
         <Scroll className="list" onScroll={forceCheck}>
           {/* 注意啦，这里要给滑动组件 scroll 中的子组件添加一个元素包裹，不然会无法滑动 */}
           <div>

@@ -7,7 +7,7 @@ import Header from '../../baseUI/header'
 import { CSSTransition } from "react-transition-group";
 import {actionCreators} from './store'
 import {connect} from 'react-redux'
-
+import Loading from '../../baseUI/loading'
 
 function Singer(props) {
   const {artist, enterLoading} = props
@@ -26,13 +26,6 @@ function Singer(props) {
     getSingerDataDispatch(id);
   }, [])
 
-  const renderTop = () => {
-    return(
-      <div>
-
-      </div>
-    )
-  }
 
   return(
     <CSSTransition
@@ -49,16 +42,17 @@ function Singer(props) {
         {/* 把退出函数传给顶部栏，实现返回功能 */}
         <Header title='singer' handleClick={handleBack}></Header>
         <ImgWrapper bgUrl={artistJS.picUrl}>
-      <div className="filter"></div>
-    </ImgWrapper>
-    <CollectButton>
-      <i className="iconfont">&#xe62d;</i>
-      <span className="text"> 收藏 </span>
-    </CollectButton>
-    <BgLayer></BgLayer>
-        {/* <SongList currentAlbum={artist}></SongList> */}
-      </Scroll>
-    </Content>
+          <div className="filter"></div>
+        </ImgWrapper>
+        <CollectButton>
+          <i className="iconfont">&#xe62d;</i>
+          <span className="text"> 收藏 </span>
+        </CollectButton>
+        <BgLayer></BgLayer>
+          {/* <SongList currentAlbum={artist}></SongList> */}
+          { enterLoading ? <Loading></Loading> : null}
+        </Scroll>
+      </Content>
     </CSSTransition>
   )
 }

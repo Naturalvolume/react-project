@@ -5,8 +5,9 @@ import reducer from './reducer'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // 创建store，传入reducer 
+// ???composeEnhancers用来
 const store = createStore (reducer, composeEnhancers (
-  // 使用异步
+  // ???使用异步
   applyMiddleware (thunk)
 ));
 

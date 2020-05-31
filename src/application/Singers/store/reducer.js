@@ -4,7 +4,7 @@ import * as actionTypes from './constants'
 // 初始化state状态，作为reducer第一个参数传入
 const defaultState = fromJS({
   singerList: [],
-  enterLoading: true,     //控制进场Loading
+  enterLoading: false,     //控制进场Loading
   pullUpLoading: false,   //控制上拉加载动画
   pullDownLoading: false, //控制下拉加载动画
   pageCount: 0            //这里是当前页数，我们即将实现分页功能
@@ -13,8 +13,6 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch(action.type) {
     case actionTypes.CHANGE_SINGER_LIST:
-      console.log('here')
-      console.log(action.data)
       return state.set('singerList', action.data);
     case actionTypes.CHANGE_PAGE_COUNT:
       return state.set('pageCount', action.data);

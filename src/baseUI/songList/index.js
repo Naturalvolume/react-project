@@ -10,16 +10,16 @@ function SongList(props) {
   const {currentAlbum} = props
   const { changePlayListDispatch, changeCurrentIndexDispatch, changeSequecePlayListDispatch } = props;
 
-  // 接受触发动画的函数，从列表
-  const { musicAnimation } = props;
-  // 选择歌曲，改变Player正在播放的歌曲，改变列表，添加动画
-  const selectItem = (e, index) => {
-    changePlayListDispatch(songs);
-    changeSequecePlayListDispatch(songs);
-    changeCurrentIndexDispatch (index);
-    // 产生音符掉落动画
-    musicAnimation (e.nativeEvent.clientX, e.nativeEvent.clientY);
-  }
+  // // 接受触发动画的函数，从列表
+  // const { musicAnimation } = props;
+  // // 选择歌曲，改变Player正在播放的歌曲，改变列表，添加动画
+  // const selectItem = (e, index) => {
+  //   changePlayListDispatch(songs);
+  //   changeSequecePlayListDispatch(songs);
+  //   changeCurrentIndexDispatch (index);
+  //   // 产生音符掉落动画
+  //   musicAnimation (e.nativeEvent.clientX, e.nativeEvent.clientY);
+  // }
   return(
     <SongContainer>
   <div className="first_line">

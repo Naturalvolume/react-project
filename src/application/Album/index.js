@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {Container} from './style';
+import style from '../../assets/global-style'
 // 引入动画插件
 import { CSSTransition } from 'react-transition-group';
 
@@ -13,6 +14,7 @@ import {connect} from 'react-redux'
 import {actionCreators} from './store'
 // 这里不需要用图片懒加载
 // import LazyLoad from 'react-lazyload'
+import Loading from '../../baseUI/loading'
 
 function Album (props) {
   // 这里用到了不同变量的解构
@@ -23,7 +25,35 @@ function Album (props) {
   const {getAlbumDataDispatch} = props
 
   const [showStatus, setShowStatus] = useState (true);
-
+  // 设置标题栏跑马灯效果
+  const headerRef = useRef()
+  const [isMarquee, setIsMarquee] = useState (false);
+  const [title, setTitle] = useState("歌单")
+  // 跑马灯逻辑
+  const HEADER_HEIGHT = 45
+  // 这个函数里有要传给子组件的数据，用useCallback包裹可以避免父元素每次生成不一样的
+  // 函数引用时，子组件每次memo的结果都不一样，导致不必要的重新渲染，浪费memo的价值
+  // useCallback 能够帮我们在依赖不变的情况保持一样的函数引用，最大程度地节约浏览器渲染性能。
+  const handleScroll = useCallback((pos) => {
+    let minScrollY = -HEADER_HEIGHT;
+    // 根据滑动的高度得到百分比
+    let percent = Math.abs (pos.y/minScrollY);
+    // 取到子组件Header的dom元素
+    let headerDom = headerRef.current;
+    // 滑过顶部的高度开始变化
+    if (pos.y < minScrollY) {
+      headerDom.style.backgroundColor = style["theme-color"];
+      // 根据百分比，设置透明度
+      headerDom.style.opacity = Math.min (1, (percent-1)/2);
+      setTitle(currentAlbum.name);
+      setIsMarquee (true);
+    } else {
+      headerDom.style.backgroundColor = "";
+      headerDom.style.opacity = 1;
+      setTitle("歌单");
+      setIsMarquee (false);
+    }
+  }, [currentAlbum]);
   // 从路由中拿到歌单的 id，这里太巧妙了！！
   // 在id值改变时重新渲染
   // but 这个getAlbumDataDispatch是什么意思
@@ -36,14 +66,14 @@ function Album (props) {
   // 讲道理，加不加这个参数应该影响不大吧
   // 猜测这里应该还是跟箭头函数的使用有关
   useEffect (() => {
-    console.log(id)
     getAlbumDataDispatch(id)
   }, [getAlbumDataDispatch, id])
 
   // 点击返回动画
-  const handleBack = () => {
+  // 这个state是要传递给子元素的，所以可以通过useCallback优化性能
+  const handleBack = useCallback (() => {
     setShowStatus (false);
-  };
+  }, []);
   
 
   
@@ -88,11 +118,12 @@ function Album (props) {
     >
     <Container>
       {/* 传入点击返回函数 */}
-      <Header title='返回' handleClick={handleBack}></Header>
+      <Header ref={headerRef} isMarquee={isMarquee} title={title} handleClick={handleBack}></Header>
       {
         // 注意啦！！！这个组件中一定要先判断数据是否收到，这是一个三元表达式
-        !isEmptyObject (currentAlbum) ? (   
-      <Scroll bounceTop={false}>
+        !isEmptyObject (currentAlbum) ? ( 
+      // 滑动scroll触发标题栏改变逻辑 
+      <Scroll bounceTop={false} onScroll={handleScroll}>
   <div>
     {renderTopDesc()}
     <Menu>
@@ -114,6 +145,7 @@ function Album (props) {
       </div>
     </Menu>
     <SongList currentAlbum={currentAlbum}></SongList>
+    { enterLoading ? <Loading></Loading> : null}
   </div>  
 </Scroll>
    ) : null
