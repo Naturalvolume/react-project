@@ -99,7 +99,8 @@ import { NavLink } from 'react-router-dom'
 （1）[react router中文文档](http://react-guide.github.io/react-router-cn/index.html)
 （2）[router的基本使用](https://segmentfault.com/a/1190000019790930)
 （3）[router的原理](https://www.jianshu.com/p/d991a4a55ae1)
-# 三、react hook
+# 三、react hooks
+react hooks让函数组件也能具有生命周期一样的功能，并且能操作状态state。关于react hooks的详细用法，可以看这个大神的[React Hooks 详解 【近 1W 字】+ 项目实战](https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d#heading-25)
 # 四、redux
 redux是一个轻量级的状态管理框架，是一种思想，可以在很多个框架中使用，不只适用于react。它将状态存放在一起，状态根据视图层的动作改变，进而又改变视图。
 [2019 React Redux 完全指南](https://github.com/xitu/gold-miner/blob/master/TODO1/redux-tutorial.md)
@@ -124,3 +125,4 @@ axios是ajax请求框架，直接写ajax有些麻烦，所以使用axios。react
 1. 跨域资源共享：用两个react项目访问网易云音乐接口，后一个打开的react项目将不能获取数据，出现CORS问题。关于CORS：[HTTP访问控制（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 2. 堆叠上下文
 3. flex布局
+# 十、react事件机制
