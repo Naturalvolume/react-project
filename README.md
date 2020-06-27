@@ -1,14 +1,14 @@
 # 一、react的基本使用
 [react官方文档](https://react.docschina.org/docs/getting-started.html)
 ### 1.项目目录、结构
-使用`create-react-app`脚手架直接生成react项目，免去了配置webpack的过程，在`react-scripts`中是`create-react-app`生成项目所有的依赖。
+使用`create-react-app`脚手架直接生成react项目，免去了配置webpack的过程。
 
 通常情况下，我们创建spa应用时是使用npm安装项目依赖，在通过配置`webpack.config.js`进行配置，搭建好环境后在`src`编写源代码。而`create-react-app`是自动构建，在`package.json`中只有`react-scripts`作为依赖，而在`react-scripts`中已经配置好了项目所有需要的。
 ### 2.JSX
 组件名称的首字母必须大写，因为JSX语法，最后需要通过babel转义成ES5语法，而babel在进行转义JSX语法时，是调用了 React.createElement() 这个方法，这个方法需要接收三个参数：type, config, children。第一个参数声明了这个元素的类型，当创建自定义组件时如果首字母小写， babel会在转义时按照一个字符串进行传递；当首字母大写时，babel在转义时按照一个变量进行传递。问题就在这里，如果传递的是一个字符串，那么在创建虚拟DOM对象时，React会认为这是一个原生的HTML标签，但是这显然不是一个原生的HTML标签，因此去创建一个不存在的标签肯定是会报错的。如果首字母大写，那么就会当成一个变量传递进去，这个时候React会知道这是一个自定义组件，因此他就不会报错了。
 ### 3.定义组件
 [关于函数组件和类组件的对比](https://www.jianshu.com/p/028b0edfa082)
-- 无状态函数组件 ``function`
+- 无状态函数组件 `function`
 不会被实例化，整体渲染性能高，但组件不能访问this对象，无生命周期方法，只能访问输入的props，无法管理状态
 - class组件 
 ```javascript
@@ -54,6 +54,7 @@ constructor(props) {
 - [阮一峰老师的Module 的加载实现](https://es6.ruanyifeng.com/#docs/module-loader)
 ### 5.props传值、父子组件传值
 props是组件的对外接口，子组件可以使用父组件的props，对于子组件，props是只读属性，不能直接修改props；state是组件的对内接口，组件用来维护管理自身数据。
+如果不使用`redux`，子组件如何影响父组件的状态呢？
 ### 6.虚拟dom
 虚拟dom的核心就是`diff`算法，用来比较新dom和老dom的差异，要注意以下几点：
 - 生命周期函数`shouldComponentUpdate`比较类组件的`props`或`state`变化时，触发比较，在函数组件中不能使用这个函数，要实现`props`的浅层比较能使用react为函数组件提供的一个`memo`方法，用法很简单，直接将函数传入 memo 中导出即可。
