@@ -72,7 +72,7 @@ react的生命周期主要分为三个阶段，挂载组件阶段、更新组件
 路由是实现单页面应用的基础，原生js可通过超链接标签和监听url地址改变的api实现单页面应用，具体看：[SPA](https://github.com/Naturalvolume/IFE-2016Spring/blob/master/SPA.html)
 **1.react的路由实现原理有**
 - 原生的锚点（hash）+ window.onhashchange，但不利于seo，因为搜索引用来说任何一个hash不是一个新但url地址，不会收录
-- 是H5新增的history API
+- H5新增的history API
 - ajax也可以实现，但没有历史记录，不能来回跳转
 - iframe框架集，但seo不友好、操作不方便
 **2.react路由容器**
