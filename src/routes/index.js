@@ -3,7 +3,6 @@ import React from 'react';
 import { Redirect } from "react-router-dom";
 // 路由step2:导入要添加路由的组件
 import Home from '../application/Home';
-import Mine from '../application/Mine';
 import Singers from '../application/Singers';
 import Rank from '../application/Rank';
 import Search from '../application/Search';
@@ -57,10 +56,6 @@ export default [
             component: Album
           }     
         ]
-      },
-      {
-        path: "/mine",
-        component: Mine
       },
       {
         path: "/find",

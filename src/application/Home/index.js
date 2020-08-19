@@ -7,9 +7,9 @@ import Player from '../Player';// 在这里写顶部栏公共组件
 // 注意这里要用 props
 // 在routes/index.js 中定义路由的时候
 function Home(props) {
-  console.log(props)
   // 路由就是props中的一个固定属性
   const { route } = props;
+  
   return (
     <div>
       <Top>
@@ -20,7 +20,6 @@ function Home(props) {
       <Tab>
         {/* 利用NavLink的activeClassName属性，实现点击动态样式*/}
         {/* 注意了，用NavLink后，该元素就变成了 a 元素，所以别忘了在style.js中设置a标签的样式 */}
-        <NavLink to='/mine' activeClassName="selected"><span>我的</span></NavLink>
         <NavLink to='/search' activeClassName="selected"><span>发现</span></NavLink>
         <NavLink to='/singers' activeClassName="selected"><span>歌手</span></NavLink>
         <NavLink to='/rank' activeClassName="selected"><span>排行榜</span></NavLink>      
